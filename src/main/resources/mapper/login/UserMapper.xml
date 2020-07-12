@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bokerr.sangzy.login.dao.UserMapper">
+    <resultMap id="userResultMap" type="com.bokerr.sangzy.login.po.User">
+        <result column="id" jdbcType="VARCHAR" property="id"></result>
+        <result column="user_name" jdbcType="NVARCHAR" property="userName"></result>
+        <result column="pass_word" jdbcType="VARCHAR" property="passWord"></result>
+        <result column="account" jdbcType="VARCHAR" property="account"></result>
+        <result column="nick_name" jdbcType="NVARCHAR" property="nickName"></result>
+        <result column="mail" jdbcType="VARCHAR" property="mail"></result>
+        <result column="head_img" jdbcType="VARCHAR" property="headImg"></result>
+        <result column="introduce" jdbcType="VARCHAR" property="introduce"></result>
+        <result column="sex" jdbcType="CHAR" property="sex"></result>
+        <result column="phone" jdbcType="VARCHAR" property="phone"></result>
+    </resultMap>
+    <insert id="insert">
+        insert into user_info (id,account,pass_word,phone,sex,nick_name,mail,introduce,head_img,user_name) 
+        values (#{id},#{account},#{passWord},#{phone},#{sex},#{nickName},#{mail},#{introduce},#{headImg},#{userName})
+    </insert>
+    <select id="findByName" resultType="com.bokerr.sangzy.login.po.User" resultMap="userResultMap">
+        select id,account,pass_word,phone,sex,nick_name,mail,introduce,head_img,user_name from user_info where user_name = #{userName}
+    </select>
+</mapper>
